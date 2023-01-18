@@ -8,157 +8,254 @@
 /* la fonts que se utilizara en el documento se importa de google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
 
-/* las propiedades de css se agruparan en tres categorias: fonts, colors y layout. despues tendremos dos componentes que se repiten en todas las paginas que son header y footer. los media queries se declararan dentro de cada categoria */
+/* las propiedades de css se agruparan en tres categorias: fonts, colors y layout. despues tendremos dos componentes que se repiten en todas las paginas que son header y footer, en estod dos componentes se concentraran los estilos de layout exclusivamente, para fonts y colores de estos componentes se debera consultar la categoria correspondiente. Los media queries se declararan dentro de cada categoria */
 @layer fonts, colors, layout, header, footer;
 
+/* layer con todos los selectors referentes a la tipografia */
 @layer fonts {
+  /* tamaño de font y espesor de los links de la navegacion y se le quitara el subrayado en la parte inferior */
   header a {
     font-weight: 800;
     font-size: 1.2rem;
     text-decoration: none;
   }
+  /* el font de todo el documento se establece como 'inter' */
   body {
     font-family: 'inter', sans-serif;
   }
-  .header a {
-    text-decoration: none;
+  /* en general todos los parrafos de los sitios llevaran una separacion entre lineas de 150% a menos de que se establezca lo contrario */
+  p {
+    line-height: 150%;
   }
+  /* espesor de texto para el texto que va a la izquierda del icono del logotipo */
   .logo-header-text {
     font-weight: 700;
   }
+  /* tamaño de letra para el primer <p> del footer */
   footer > p:nth-of-type(1) {
     font-size: 1.2rem;
   }
+  /* se agruparon las notas de abajo para asignarles un tamaño de letra a todas  */
   .footnotes {
     font-size: 0.7rem;
   }
+  /* estilos para las letras del boton de submit, inherit al font family para que agarre el que se establecio como predeterminado a todo el documento */
   input[type='submit'] {
     font-family: inherit;
     font-size: 1.1rem;
   }
+  /* igual que el selector anterior, pero para el input de email */
   input[type='email'] {
     font-family: inherit;
     font-size: 1.2rem;
   }
+  /* se remueven los subrayados de los links en el footer y se remueve el estilo de italicas de las letras */
   footer a {
     text-decoration: none;
     font-style: normal;
   }
+  /* se establece el tamaño y espesor de letra para todos los titulos*/
   h1 {
     font-size: 2rem;
     font-weight: 800;
   }
+  /* se establece un tamaño diferente para los titulos de las paginas (menos index) */
+  .main-title{
+    font-size: 3rem;
+  }
+  /* tamaño y separado de lineas para los parrafos del .hero */
   p.hero {
     font-size: 1.3rem;
     line-height: 2rem;
   }
+  /* los thumbnails del gallery son links, para que no subraye todas las letras se le marca como none al text'decoration */
+  .gallery-thumbnail a {
+    text-decoration: none;
+  }
+  /* se quita el subrayado a todos los <a> que tengan .link  */
+  .link {
+    text-decoration: none;
+  }
+  /* este selector selecciona los segundos <p> de los gallery-thumbnails que vienen siendo los nombres + fechas de las mujeres y con esto se le da estilo al texto */
   .gallery-preview p:nth-of-type(2) {
     font-size: 1.2rem;
     font-weight: 700;
   }
-  .gallery-preview a::after {
+  /* con este selector se le agrega una flecha el <a> que dice "ver toda la lista" y se le agrega un paggind left */
+  .gallery-preview a.link::after {
     content: '\2192';
     padding-left: 1rem;
   }
+  /* para remover los bullets de la navegacion en pagina referentes.html */
   .gallery-nav {
     list-style: none;
   }
-  /* ·• */
+  /* una vez que se le quitan los bullets a la navegacion, ahora se le agregan unos iconos intermedios que separan cada elemento de la lista */
   .gallery-nav li::after {
     content: "•";
     margin: 0 .3rem;
     color:rgb(245, 157, 35);
   }
+  /* con este selector se remueve el icono del ultimo child de la lista */
   .gallery-nav li:last-child::after {
     content: " "
   }
+  /* como los elementos de la lista son links <a> con este selector se quita el subrayado y se establece un tamaño y espesor de letra */
   .gallery-nav a {
     font-size: 0.8rem;
     font-weight: 800;
     text-decoration: none;
   }
-  .gallery-item h2 {
+  /* se establece estilo de tamaño y espesor de letra para el titulo del gallery-item, en este caso seria el numero grande */
+  .gallery-item-title {
     font-size: 3rem;
     font-weight: 800;
   }
-  .gallery-item div:nth-of-type(1) p:nth-of-type(1), .gallery-item div:nth-of-type(1) p:nth-of-type(3) {
+  /* se establece estilo de tamaño y espesor de letra para la categoria y años */
+  .gallery-item-categoria, .gallery-item-year {
     font-size: .8rem;
     font-weight: 800;
   }
-  .gallery-item p:nth-of-type(2) {
+  /* se establece estilo de tamaño y espesor de letra para el nombre de la mujer */
+  .gallery-item-nombre {
     font-size: 1.2rem;
     font-weight: 700;
   }
-  .gallery-item p:nth-of-type(4) {
-    font-size: 1.2rem;
+  /* se establece estilo de tamaño y espesor de letra para la descripcion de los logros de la mujer */
+  .gallery-item-descripcion {
+    font-size: 1rem;
     font-weight: 400;
   }
-  .gallery-item a {
+  /* se remueve el subrayado del link de cada gallery-item */
+  .gallery-item-link {
     text-decoration: none;
   }
-  .gallery-item a::before {
+  /* agregar el simbolo de + previo a cada link, se establece el margen de separacion y el color de este elemento */
+  .gallery-item-link::before {
     content: "+";
     margin-right: .2rem;
     color: var(--orange);
   }
+  /* se establece estilo de tamaño y espesor de letra para los subtitulos h2 se todo el documento */
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  /* se establece estilo de tamaño de letra para los elementos figcaption de todo el documento */
+  figcaption {
+    font-size: .8rem;
+  }
+  /* se establece estilo de tamaño, separacion de linea y espesor de letra para elementos <dt> de todos los sitios*/
+  dt {
+    line-height: 150%;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  /* se agrega un bullet especifico s los elementos <dt> para poder controlar los estilos de este bullet independientes al del texto, estableciendo estilo de tamaño de letra, color. El margin-left es para que coloque este elemento fuera del bloque de texto y el width:2rem es para que el texto quede perfectamente alineado a como estaba previo a agregarle el bullet. Se utiliza el inline-block para que se pueda separar el bullet del texto porque si no lo mueve todo junto como un solo elemento */
+  dt::before {
+    content: "\25A0";
+    color: var(--red);
+    font-size: 2rem;
+    margin-left: -2rem;
+    display: inline-block;
+    width: 2rem;
+  }
+  /* se establece estilo de separacion de linea para elementos <dd> */
+  dd {
+    line-height: 150%;
+  }
+  /* media query para el break point de +1000px */
   @media screen and (min-width: 1000px) {
-    h1 {
+    /* el titulo del .hero crece */
+    .hero-title {
       font-size: 3rem;
+    }
+    /* se quitan los elementos que se habian insertado para la separacion entre los links de la navegacion, ya que ahora se mostraran como una columna, ya no seran necesarios */
+    .gallery-nav li::after {
+      content: "";
     }
   }
 }
-
+/* layer de colores */
 @layer colors {
+  /* se establece estilo de color de letra para links de navegacion del header */
   header a {
     color: var(--blue);
   }
+  /* se establece estilo de color de letra para estado hover de links */
   header a:hover {
     color: var(--orange);
   }
-  footer a:hover {
-    color: var(--orange);
-  }
+  /* color para el boton del form inherit (para que agarre el color del parent) y el background color es rojo */
   input[type='submit'] {
     color: inherit;
     background-color: var(--red);
   }
+  /* para el input de mail se le hace un override a los colores default de inputs para que agarre los del parent */
   input[type='email'] {
     background-color: inherit;
     color: inherit;
   }
+  /* hacer un override para que los links del footer hereden el color */
   footer a {
     color: inherit;
   }
+  /* se establece un color de fondo del footer negro y color blanco para todas las letras */
   footer {
     background-color: black;
     color: white;
   }
+  /* el primer div del hero lleva un color rojo */
   .hero div:nth-of-type(1) {
     background-color: var(--red);
   }
+  /* el segundo div del hero lleva un color naranja */
   .hero div:nth-of-type(2) {
     background-color: var(--orange);
   }
+  /* todos los textos <p> de los thumbnails iran de color azul */
   .gallery-preview p {
     color: var(--blue);
   }
+  /* todos los <a> con class .link iran de color naranja haciendo un override al color azul default */
   .link {
     color: var(--orange);
   }
-  .gallery-item h2 {
-    color:rgb(240, 93, 80);
+  /* se hace un class separado del .link para los gallery-items ya que se le agregara un ::before, se pudo haber hecho una suma de dos clases pero preferi hacerlo de esta manera */
+  .gallery-item-link {
+    color: var(--orange);
   }
-  .gallery-item a {
-    color: var(--orange)
-  }
+  /* se establece el color azul para todos los parrafos de los gallery-items */
   .gallery-item p {
     color: var(--blue);
   }
+  /* color rojo para el numero del gallery-item, se le agrega una p al inicio del selector porque si no agarra el color del selector anterior .gallery-item p que tiene mayor especificidad*/
+  p.gallery-item-title {
+    color: var(--red);
+  }
+  /* color override a los links de la navegacion de la galeria */
   .gallery-nav a {
     color: var(--orange);
   }
+  /* color gris para el fondo del figure */
+  figure.quote {
+    background-color: #e3e4e6;
+  }
+  /* se crea una clase especial para poder estilizar todos los parrafos del sitio 11 de febrero */
+  main.colored-text > p {
+    color: var(--blue)
+  }
+  /* se crea un class de .video para poder modificar especificamente el figcaption de este elemento */
+  figure.video figcaption {
+    color: var(--blue)
+  }
+  /* color para todos los dd y dt internos al dl */
+  dl {
+    color: var(--blue);
+  }
 }
 
+/* categoria de layout, es la que contiene la mayor parte de los estilos y media queries */
 @layer layout {
   /* reset */
   * {
@@ -170,7 +267,10 @@
   main {
     margin: auto;
     padding: 1rem;
-/*     max-width: 650px; */
+  }
+  /* para que no se salgan los bullets rojos de la pantalla en la pagina de iniciativas */
+  main.iniciativas {
+    padding-left: 3rem;
   }
   /* para centrar el contenido del hero, seran dos flex childs (el cuadro rojo y el amarillo) y se hacen flex para podemo cambiar la direccion del flex-direction segun el media query, se da align y justify center para que el contenido este centrado en los boxes */
   .hero div {
@@ -201,9 +301,11 @@
     margin-top: 0.8rem;
     text-align: center;
   }
+  /* separacion entre el primer p del thumbnail y la imagen */
   .gallery-preview div p:nth-of-type(1) {
     margin-top: 1rem;
   }
+  /* separacion entre el segundo p del thumbnail y el primer p */
   .gallery-preview div p:nth-of-type(2) {
     margin-top: .6rem;
   }
@@ -220,31 +322,73 @@
   .gallery-preview img {
     width: 100%;
   }
+  /* la navegacion de la galeria se hace flex wrap para que los elementos fluyan uno al lado del otro y en varias rows en caso de ser necesario. se alinea el texto al centro y se establece la separacion de .5rem en el sentido vertical de los rows y 0 para la separacion horizontal (esta la controlamos con el elemento de separacion que se le inserto a cada flex item a la derecha) */
   .gallery-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem 0;
   }
-  .gallery-nav-container {
+  /* se le agrega un margen y se centra el h1.main-title */
+  .main-title {
+    margin-bottom: 1.5rem;
     text-align: center;
   }
-  .gallery-nav-container h1 {
-    margin-bottom: 1.5rem;
-  }
+  /* este es el parent de los gallery-items, se establece como flex con direccion column para que los elementos esten en fila uno abajo del otro. agregamos un margin-top para separar un poco la galeria de la navegacion (esto se tendra que quitar en el media query en el que la navegacion se mueve al sidebar), se establece un gap vertical de 2rem para separacion entre los flex items y un width del 100% para que abarquen todo el width del parent */
   .gallery {
     margin-top: 2rem;
+    margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 100%;
   }
+  /* a su vez, los flex childs del gallery seran flex parents del contenido interno, en este media query se establece como direction column para que toda la informacion salga en una sola columna con una separacion minima de .3rem */
   .gallery-item {
     display: flex;
     flex-direction: column;
     gap: .3rem;
   }
-  .gallery {
-    margin-bottom: 3rem;
+  /* el elemento que contiene todos los elementos del sitio menos el header y el footer se establece como flex y tendra dos hijos, la navegacion y la galeria ya que en el media query de +1000px se cambiara la direccion del flex para acomodar la navegacion en un sidebar a la izquierda  */
+  .main-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  /* display block se utiliza para poder darle un margen en la parte superior de 1rem, ya que por default los elementos <a> son inline-blocks y a estos elementos no se les puede dar margen */
+  .gallery-item-link {
+    display: block;
+    margin-top: 1rem;
+  }
+  /* se establecen margenes y paddings para que tanto el container como el texto interno del blockquote este espaciado correctamente con respecto a sus siblings */
+  figure.quote {
+    padding: 1.5rem;
+    margin: 3rem 0;
+  }
+  /* separacion del figcaption del texto en el blockquote */
+  figure.quote figcaption {
+    margin-top: 1.5rem;
+  }
+  /* se establecen estilos para todos los subtitulos h2 centrados y con margen en la parte inferior */
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  /* margenes superior e inferior para el video */
+  figure.video {
+    margin: 1rem 0 4rem 0;
+  }
+  /* se establece este width para que el iframe no tenga un overflow afuera del contenedor figure */
+  iframe {
+    width: 100%;
+  }
+  /* para quitarle el margen que tiene por default la clase de .gallery-item-link, porque en los <dd> no llevan margen */
+  dd .gallery-item-link {
+    margin-top: 0;
+  }
+  /* separacion entre dd y dt */
+  dd {
+    margin-bottom: 1.5rem;
   }
   /* primer media query lo hacemos de 500px para cambiar de mobile a pantalla intermedia*/
   @media screen and (min-width: 500px){
@@ -268,23 +412,33 @@
     main {
       max-width: 700px;
     }
+    /* para que la imagen abarque el 100% del contenedor y cover para que tambien llene el contenedor verticalmente, la imagen no se deformara sino que simplemente se le va a recortar a los lados en caso de que el aspect ratio del container sea mas vertical que el de la imagen */
     .gallery-item img {
       width: 100%;
       object-fit: cover;
     }
+    /* cuando la pantalla crece +500px la informacion interna del gallery item se desplegara como row. los childs son 3: el div con texto, la imagen y el div con parrafo y link
+    se usa una altura minima de 130px la cual podria crecer en caso de que la informacion de alguno de los containers tenga un overflow*/
     .gallery-item {
       flex-direction: row;
-      align-items: stretch;
       min-height: 130px;
       gap: 1rem;
     }
+    /* se establece un flex grow y stretch igual para los 3 childs del gallery-item y un width del 25% del parent */
     .gallery-item > * {
       flex: 1 1 calc(25%);
-      border: 1px solid magenta;
     }
+    /* se le aplica un override al ultimo child del gallery-item (el que lleva el parrafo) para que este abarque el 50% del width del parent y con el align-self se centra en el sentido vertical */
     .gallery-item div:nth-of-type(2) {
       flex: 1 1 calc(50%);
       align-self: center;
+    }
+    /* el primer child del gallery-item a su vez se establece como flex parent para poder centrar el contenido en el sentido vertical del parent y se aplica el word-break porque estaba teniendo problemas con el gallery-item #4 de Hedy Lamarr ya que la palabra "telecomunicaciones" ocasionaba un overflow en el container y me reducia el tamaño de la imagen */
+    .gallery-item-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      word-break: break-word;
     }
   }
   /* segundo media query para viewports grandes y de ahi en adelante ya todo se comportara asi */
@@ -292,6 +446,10 @@
     /* se establece un width maximo de 1300px ya que en el mockup se aprecia que el contenido tiene whitespace a los lados */
     main {
       max-width: 1300px;
+    }
+    /* especificamente para el sitio de iniciativas, el contenido en el main no debera medir mas de 1000px */
+    main.iniciativas {
+      max-width: 1000px;
     }
     /* el contenedor de los divs del hero se cambia a flex, para poder desplegar ambos divs uno al lado de otro */
     section.hero {
@@ -311,35 +469,82 @@
       flex: 1 1 calc(25% - 1rem);
     }
     /* se alinea el titulo al lado izquierdo del contenedor */
-    section.hero h1 {
+    .hero-title {
       text-align: left;
+    }
+    /* se cambia el direction del flex para que el child que contiene la navegacion se coloque a la izquierda y el child que contiene la galeria se coloque a la derecha, el stretch es para que el child de navegacion abarque todo el height del parent porque posteriormente se le aplicara un position sticky y es necesario que el height sea completo */
+    .main-flex {
+      flex-direction: row;
+      align-items: stretch;
+    }
+    /* se establece un width de 300px para el contenedor de la navegacion */
+    .gallery-nav-container {
+      flex: 1 1 300px;
+    }
+    /* con este position sticky nos aseguramos de que el sidenav siempre este presente en el viewport independientemente de que tanto scroll se le haya hecho al sitio, con el top:40px lo separamos del extremo superior del viewport */
+    .gallery-nav {
+      position: sticky;
+      top: 40px;
+    }
+    /* la navegacion dejara de estar en flex row y ahora sera todo una sola columna con un gap entre items de .5rem */
+    .gallery-nav {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    /* con esto alineamos el texto de la navegacion a la parte de la izquierda del viewport */
+    .gallery-nav-container {
+      text-align: left;
+    }
+    /* como la navegacion ahora se encuentra del lado de la izquierda de la galleria, ya no es necesario el margen superior que le habiamos dado, por eso se quita */
+    .gallery {
+      margin-top: 0;
+    }
+    /* con esto establecemos un tamaño maximo de width para el figure que  contiene el quote de 850px y con los margenes auto hacemos que se coloque centrado respecto al parent container */
+    figure.quote {
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* con esto establecemos un tamaño maximo de width para el figure que contiene el video de 450px y con los margenes auto hacemos que se coloque centrado respecto al parent container */
+    figure.video {
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
-
+/* componente del header, aqui se colocan todos los selectors relacionados con la categoria de layout para el header */
 @layer header {
+  /* margen superior para separarlo del extremo del viewport */
   header {
     margin-top: 1rem;
   }
+  /* con esto logramos que puedan estar uno al lado del otro (logo icono y logo texto) */
   .logo-header-icon, .logo-header-text {
     display: inline-block;
   }
+  /* este container tiene adentro tanto el logo icon como el logo de texto, al hacerlo flex nos aseguramos de que en caso que no quepan ambos en la misma row, pase el texto para abajo. tambien nos permite centrarlo con justify-content y alinearlo a la parte inferior con flex-end  */
   .logo-header-container {
     display: flex;
     justify-content: center;
     align-items: flex-end;
   }
+  /* se establece una separacion vertical del elemento de la navegacion y con el margen de auto hacemos que el elemento este centrado horizontalmente en su parent container */
   nav {
     margin: 20px auto;
   }
+  /* para remover los bullets de la navegacion */
   header li {
     list-style: none;
   }
+  /* al hacer los <a> block nos aseguramos de que esten cada uno en un row y el texto estara alineado al centro */
   header a {
     display: block;
     text-align: center;
   }
+  /* media query para pantallas mayores de 1000px */
   @media screen and (min-width: 1000px) {
+    /* el header que contiene 2 childs se hace flex parent para que se acomoden los childs en un row, con space-between nos aseguramos que acomodara en los extremos cada uno de los childs y con el max-width de 1300px limitamos el crecimiento que puede tener el flex parent, con el margin auto le quitamos el margin top que tenia antes */
     header {
       display: flex;
       justify-content: space-between;
@@ -348,21 +553,22 @@
       margin: auto;
       padding: 1rem;
     }
+    /* ya no es necesario tener la navegacion con margen por eso se lo quitamos */
     header nav {
       margin: 0;
     }
+    /* elemento ul que contiene la navegacion se hace flex, para que los items aparezcan en row, y con space-between nos aseguramos de que el primer y ultimo elemento estaran en los extremos. con gap establecemos la separacion entre los items */
     header ul {
       display: flex;
       justify-content: space-between;
       gap: 1.5rem;
     }
-    header a {
-      display: inline-block;
-    }
   }
 }
 
+/* componente del footer, aqui se colocan todos los selectors relacionados con la categoria de layout para el footer */
 @layer footer {
+  /* se establece como flex parent con direction de column para poder usar el justify y align center, padding vertical 2x que el horizontal */
   footer {
     text-align: center;
     display: flex;
@@ -371,24 +577,31 @@
     flex-direction: column;
     padding: 40px 20px;
   }
+  /* a todos los flex items se les da una separacion vertical igual */
   footer * {
     margin: 8px auto 8px auto;
   }
+  /* el icono del logo se hace block element para que abarque el 100% del width del parent container */
   #logo-footer-icon {
     display: block;
   }
+  /* igualmente el cite se hace block element para que abarque el 100% del width */
   footer cite {
     display: block;
   }
+  /* links de politicas se hace block element para que abarque el 100% del width y no se desplieguen uno al lado del otro */
   .politicas a {
     display: block;
   }
+  /* se remueve el border default que tienen algunos de los elementos que estamos usando el el form */
   footer form *{
     border: none;
   }
+  /* removemos el label de email, no es necesario */
   label[for='email'] {
     display: none;
   }
+  /* se le agrega estilo el input de email, alineando el texto placeholder al centro, quitando borde default y agregando solo un borde en la parte inferior. se establece width para que abarque el 100% del parent y un padding en la parte inferior */
   input[type='email'] {
     text-align: center;
     border: none;
@@ -396,17 +609,34 @@
     width: 100%;
     padding-bottom: 1rem;
   }
+  /* se remueve el estilo default que tiene el input con estado de focus */
   input[type='email']:focus {
     outline: 0;
   }
+  /* se modifica el margen y padding del boton para cambiar sus dimensiones tanto interiores como de separacion entre elementos externos */
   input[type='submit'] {
     margin: 20px auto 40px auto;
     padding: 10px;
   }
-  footer > p:nth-of-type(1) {
+  /* se agrega un margen inferior y superior a la frase */
+  .footer-frase {
     margin: 40px 0;
   }
+  /* el bloque que contiene los footnotes se le agrega una separacion vertical y horizontalmente se establece auto para que quede centrado el elemento */
   .footnotes {
     margin: 20px auto 20px auto;
+  }
+  /* media query para viewports +500px */
+  @media screen and (min-width: 500px) {
+    /* los <a> de las politicas ahora si se desplegaran uno al lado de otro por eso se ponen como inline-block, con el margen lateral se separan entre si */
+    .politicas a {
+      display: inline-block;
+      margin: 0 0.5rem;
+    }
+    /* cambia el tamaño de la letra de la frase y se agrega un margen vertical de 40px */
+    .footer-frase {
+      font-size: 1.6rem;
+      margin: 40px 0;
+    }
   }
 }
